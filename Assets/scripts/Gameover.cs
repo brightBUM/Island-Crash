@@ -11,7 +11,7 @@ public class Gameover : MonoBehaviour
     public GameObject gameovercanvas;
     public GameObject scorecanvas;
     public int score;
-    public float timscale;
+    //public float timscale;
     private bool gmover = false;
     
     // Start is called before the first frame update
@@ -19,6 +19,7 @@ public class Gameover : MonoBehaviour
     {
         
         Enemy.playerboatcollided.AddListener(increasescore);
+        scoreref = gameovercanvas.GetComponentInChildren<TextMeshProUGUI>();
         //scoreref = scorecanvas.GetComponentInChildren<TextMeshProUGUI>();
     }
 
@@ -33,9 +34,9 @@ public class Gameover : MonoBehaviour
         if (lives == 0)
         {
             gmover = true;
-            gameovercanvas.SetActive(true);
-            scoreref = gameovercanvas.GetComponentInChildren<TextMeshProUGUI>();
             scorecanvas.SetActive(false);
+            gameovercanvas.SetActive(true);
+            
             if(gmover)
             {
                 Time.timeScale = 0.5f;
@@ -43,7 +44,7 @@ public class Gameover : MonoBehaviour
 
             scoreref.text = "Score \n" + score.ToString();
         }
-        timscale = Time.timeScale;
+        //timscale = Time.timeScale;
     }
 
     public void quitgame()
